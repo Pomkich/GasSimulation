@@ -16,23 +16,46 @@ void Renderer::checkCollisions() {
             auto& fir_mol = gas[i];
             auto& sec_mol = gas[j];
 
+            // center of molecule
             sf::Vector2f c_mol1 = sf::Vector2f(
                 fir_mol.getPos().x + fir_mol.getRadius(),
-                fir_mol.getPos().y + fir_mol.getRadius());
+                fir_mol.getPos().y + fir_mol.getRadius()
+            );
 
             sf::Vector2f c_mol2 = sf::Vector2f(
                 sec_mol.getPos().x + sec_mol.getRadius(),
-                sec_mol.getPos().y + sec_mol.getRadius());
+                sec_mol.getPos().y + sec_mol.getRadius()
+            );
 
 
             double catet1 = std::abs(c_mol2.x - c_mol1.x);
             double catet2 = std::abs(c_mol2.y - c_mol1.y);
             if ((std::sqrt(catet1 * catet1 + catet2 * catet2)) < 
                 (fir_mol.getRadius() + sec_mol.getRadius())) {
-                std::cout << "collision occured" << std::endl;
+                resolveCollision(fir_mol, sec_mol);
             }
         }
     }
+}
+
+void Renderer::resolveCollision(Molecule& mol1, Molecule& mol2) {
+    sf::Vector2f mol1_vel = mol1.getVelocity();
+    sf::Vector2f mol2_vel = mol2.getVelocity();
+    auto mass_mol1 = mol1.getRadius();
+    auto mass_mol2 = mol2.getRadius();
+
+    sf::Vector2f new_vel_m1 = sf::Vector2f(
+        ((mass_mol1 - mass_mol2) * mol1_vel.x + 2 * mass_mol2 * mol2_vel.x) / (mass_mol1 + mass_mol2),  // x axis
+        ((mass_mol1 - mass_mol2) * mol1_vel.y + 2 * mass_mol2 * mol2_vel.y) / (mass_mol1 + mass_mol2)   // y axis
+    );
+
+    sf::Vector2f new_vel_m2 = sf::Vector2f(
+        ((mass_mol2 - mass_mol1) * mol2_vel.x + 2 * mass_mol1 * mol1_vel.x) / (mass_mol1 + mass_mol2),  // x axis
+        ((mass_mol2 - mass_mol1) * mol2_vel.y + 2 * mass_mol1 * mol1_vel.y) / (mass_mol1 + mass_mol2)   // y axis
+    );
+
+    mol1.setVelocity(new_vel_m1);
+    mol2.setVelocity(new_vel_m2);
 }
 
 void Renderer::addMolecule(Molecule new_mol) {

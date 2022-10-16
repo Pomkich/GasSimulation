@@ -18,7 +18,7 @@ Molecule::Molecule(int p_x, int p_y, int radius, double vel_x, double vel_y) {
 void Molecule::update(double& dt_time) {
 	shape.setPosition(
 		shape.getPosition().x + (velocity.x * dt_time),
-		shape.getPosition().x + (velocity.y * dt_time));
+		shape.getPosition().y + (velocity.y * dt_time));
 }
 
 void Molecule::setVelocity(sf::Vector2f vel) {
@@ -31,6 +31,10 @@ sf::CircleShape& Molecule::getShape() {
 
 sf::Vector2f Molecule::getPos() {
 	return shape.getPosition();
+}
+
+sf::Vector2f Molecule::getVelocity() {
+	return velocity;
 }
 
 float Molecule::getRadius() {

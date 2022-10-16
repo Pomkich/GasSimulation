@@ -13,7 +13,7 @@ private:
 	
 	void update(double dt_time);
 	void checkCollisions();
-	//void resolveCollision();
+	void resolveCollision(Molecule& mol1, Molecule& mol2);
 public:
 	Renderer(int width, int heigth);
 	void addMolecule(Molecule new_mol);

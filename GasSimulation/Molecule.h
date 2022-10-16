@@ -15,5 +15,6 @@ public:
 	void setVelocity(sf::Vector2f vel);
 	sf::CircleShape& getShape();
 	sf::Vector2f getPos();
+	sf::Vector2f getVelocity();
 	float getRadius();
 };
