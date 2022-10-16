@@ -15,10 +15,10 @@ Molecule::Molecule(int p_x, int p_y, int radius, double vel_x, double vel_y) {
 	velocity.y = vel_y;
 }
 
-void Molecule::update() {
+void Molecule::update(double& dt_time) {
 	shape.setPosition(
-		shape.getPosition().x + velocity.x,
-		shape.getPosition().x + velocity.y);
+		shape.getPosition().x + (velocity.x * dt_time),
+		shape.getPosition().x + (velocity.y * dt_time));
 }
 
 void Molecule::setVelocity(sf::Vector2f vel) {

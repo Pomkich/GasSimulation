@@ -4,9 +4,9 @@ Renderer::Renderer(int width, int heigth) {
     window.create(sf::VideoMode(width, heigth), "SFML works!");
 }
 
-void Renderer::update() {
+void Renderer::update(double dt_time) {
     for (auto& molecule : gas) {
-        molecule.update();
+        molecule.update(dt_time);
     }
 }
 
@@ -24,7 +24,8 @@ void Renderer::run() {
                 window.close();
         }
         // updating simulation
-        update();
+        update(clock.getElapsedTime().asSeconds());
+        clock.restart();
 
         // render
         window.clear();
@@ -32,6 +33,5 @@ void Renderer::run() {
             window.draw(molecule.getShape());
         }
         window.display();
-        std::this_thread::sleep_for(std::chrono::milliseconds(64));
     }
 }
