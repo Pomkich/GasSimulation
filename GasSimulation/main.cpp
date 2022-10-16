@@ -1,16 +1,21 @@
 #include "Renderer.h"
 #include <thread>
+#include <ctime>
+#include "Constants.h"
 
 int main()
 {
-    Molecule mol1(400, 200, 10, 50, 0);
-    //Molecule mol2(300, 200, 10, 50, -50);
-    Molecule mol3(500, 300, 10, 0, -50);
-
-    Renderer rend(800, 600);
-    rend.addMolecule(mol1);
-    //rend.addMolecule(mol2);
-    rend.addMolecule(mol3);
+    srand(time(NULL));
+    Renderer rend(screen_width, screen_heigth);
+    for (int i = 0; i < molecules_size; i++) {
+        int vel_x = rand() % max_velocity;
+        int vel_y = rand() % max_velocity;
+        Molecule mol1(
+            (rand() % (int)(screen_width * 0.80)) + (int)(screen_width * 0.15), 
+            (rand() % (int)(screen_heigth * 0.80)) + (int)(screen_heigth * 0.15), 
+            10, vel_x, vel_y);
+        rend.addMolecule(mol1);
+    }
 
     rend.run();
 

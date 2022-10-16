@@ -26,6 +26,25 @@ void Renderer::update(double dt_time) {
 }
 
 void Renderer::checkCollisions() {
+    // check collisions with walls
+    for (auto& molecule : gas) {
+        if (molecule.getPos().x < walls[(int)side::left].getSize().x || 
+            ((molecule.getPos().x + molecule.getRadius() * 2) > walls[(int)side::rigth].getPosition().x)) {
+            molecule.setVelocity(   // just reflect from wall in opposite direction
+                sf::Vector2f(-molecule.getVelocity().x, molecule.getVelocity().y)
+            );
+        }
+        else if (molecule.getPos().y < walls[(int)side::up].getSize().y || 
+            ((molecule.getPos().y + molecule.getRadius() * 2) > walls[(int)side::bottom].getPosition().y)) {
+            molecule.setVelocity(
+                sf::Vector2f(molecule.getVelocity().x, -molecule.getVelocity().y)
+            );
+        }
+    }
+
+    std::cout << walls[(int)side::bottom].getPosition().y << std::endl;
+
+    // check collisions between molecules
     for (int i = 0; i < gas.size(); i++) {
         for (int j = i + 1; j < gas.size(); j++) {
             auto& fir_mol = gas[i];
