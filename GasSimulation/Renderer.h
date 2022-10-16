@@ -12,6 +12,8 @@ private:
 	sf::Clock clock;
 	
 	void update(double dt_time);
+	void checkCollisions();
+	//void resolveCollision();
 public:
 	Renderer(int width, int heigth);
 	void addMolecule(Molecule new_mol);

@@ -14,4 +14,6 @@ public:
 	void update(double& dt_time);
 	void setVelocity(sf::Vector2f vel);
 	sf::CircleShape& getShape();
+	sf::Vector2f getPos();
+	float getRadius();
 };

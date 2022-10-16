@@ -28,3 +28,11 @@ void Molecule::setVelocity(sf::Vector2f vel) {
 sf::CircleShape& Molecule::getShape() {
 	return shape;
 }
+
+sf::Vector2f Molecule::getPos() {
+	return shape.getPosition();
+}
+
+float Molecule::getRadius() {
+	return shape.getRadius();
+}
