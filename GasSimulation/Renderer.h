@@ -3,12 +3,14 @@
 #include <vector>
 #include <thread>
 #include "Molecule.h"
+#include "Constants.h"
 #include <iostream>
 
 class Renderer {
 private:
 	sf::RenderWindow window;
 	std::vector<Molecule> gas;
+	std::vector<sf::RectangleShape> walls;
 	sf::Clock clock;
 	
 	void update(double dt_time);

@@ -2,6 +2,21 @@
 
 Renderer::Renderer(int width, int heigth) {
     window.create(sf::VideoMode(width, heigth), "SFML works!");
+    // adding walls with setting size
+    walls.push_back(sf::RectangleShape(sf::Vector2f(wall_size, screen_heigth)));
+    walls.push_back(sf::RectangleShape(sf::Vector2f(screen_width, wall_size)));
+    walls.push_back(sf::RectangleShape(sf::Vector2f(wall_size, screen_heigth)));
+    walls.push_back(sf::RectangleShape(sf::Vector2f(screen_width, screen_heigth)));
+
+    // setup position of walls
+    walls[(int)side::left].setPosition(sf::Vector2f(0, 0));
+    walls[(int)side::up].setPosition(sf::Vector2f(0, 0));
+    walls[(int)side::rigth].setPosition(sf::Vector2f(screen_width - wall_size, 0));
+    walls[(int)side::bottom].setPosition(sf::Vector2f(0, screen_heigth - wall_size));
+
+    // setup color
+    for (auto& wall : walls)
+        wall.setFillColor(sf::Color::Red);
 }
 
 void Renderer::update(double dt_time) {
@@ -80,6 +95,9 @@ void Renderer::run() {
         window.clear();
         for (auto& molecule : gas) {
             window.draw(molecule.getShape());
+        }
+        for (auto& wall : walls) {
+            window.draw(wall);
         }
         window.display();
     }
