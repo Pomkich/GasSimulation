@@ -11,8 +11,8 @@ int main()
         int vel_x = rand() % max_velocity;
         int vel_y = rand() % max_velocity;
         Molecule mol1(
-            (rand() % (int)(screen_width * 0.80)) + (int)(screen_width * 0.15), 
-            (rand() % (int)(screen_heigth * 0.80)) + (int)(screen_heigth * 0.15), 
+            (rand() % (int)(screen_width * 0.80)) + (int)(screen_width * 0.10), 
+            (rand() % (int)(screen_heigth * 0.80)) + (int)(screen_heigth * 0.10), 
             10, vel_x, vel_y);
         rend.addMolecule(mol1);
     }

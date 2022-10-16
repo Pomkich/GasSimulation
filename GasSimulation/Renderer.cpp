@@ -42,8 +42,6 @@ void Renderer::checkCollisions() {
         }
     }
 
-    std::cout << walls[(int)side::bottom].getPosition().y << std::endl;
-
     // check collisions between molecules
     for (int i = 0; i < gas.size(); i++) {
         for (int j = i + 1; j < gas.size(); j++) {

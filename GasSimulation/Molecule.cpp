@@ -29,6 +29,10 @@ sf::CircleShape& Molecule::getShape() {
 	return shape;
 }
 
+void Molecule::setPos(sf::Vector2f pos) {
+	shape.setPosition(pos);
+}
+
 sf::Vector2f Molecule::getPos() {
 	return shape.getPosition();
 }
