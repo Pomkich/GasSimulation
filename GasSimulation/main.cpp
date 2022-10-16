@@ -1,24 +1,18 @@
-#include <SFML/Graphics.hpp>
+#include "Renderer.h"
+#include <thread>
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    Molecule mol1(100, 200, 10, 10, 10);
+    Molecule mol2(300, 200, 10, 10, -10);
+    Molecule mol3(500, 200, 10, -10, -10);
 
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
+    Renderer rend(800, 600);
+    rend.addMolecule(mol1);
+    rend.addMolecule(mol2);
+    rend.addMolecule(mol3);
 
-        window.clear();
-        window.draw(shape);
-        window.display();
-    }
+    rend.run();
 
     return 0;
 }

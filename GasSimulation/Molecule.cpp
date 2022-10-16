@@ -8,6 +8,7 @@ Molecule::Molecule() {
 }
 
 Molecule::Molecule(int p_x, int p_y, int radius, double vel_x, double vel_y) {
+	shape.setFillColor(sf::Color::Green);
 	shape.setRadius(radius);
 	shape.setPosition(p_x, p_y);
 	velocity.x = vel_x;
