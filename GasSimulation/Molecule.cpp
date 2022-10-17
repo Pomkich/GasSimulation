@@ -25,12 +25,16 @@ void Molecule::setVelocity(sf::Vector2f vel) {
 	velocity = vel;
 }
 
-sf::CircleShape& Molecule::getShape() {
-	return shape;
-}
-
 void Molecule::setPos(sf::Vector2f pos) {
 	shape.setPosition(pos);
+}
+
+void Molecule::setColor(sf::Color col) {
+	shape.setFillColor(col);
+}
+
+sf::CircleShape& Molecule::getShape() {
+	return shape;
 }
 
 sf::Vector2f Molecule::getPos() {

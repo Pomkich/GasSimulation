@@ -88,6 +88,11 @@ void Renderer::resolveCollision(Molecule& mol1, Molecule& mol2) {
 
     mol1.setVelocity(new_vel_m1);
     mol2.setVelocity(new_vel_m2);
+
+    // setup new color
+    sf::Color col(rand() % 255, rand() % 255, rand() % 255, 255);
+    mol1.setColor(col);
+    mol2.setColor(col);
 }
 
 void Renderer::addMolecule(Molecule new_mol) {

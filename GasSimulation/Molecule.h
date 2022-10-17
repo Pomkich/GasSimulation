@@ -13,10 +13,12 @@ public:
 	Molecule(int p_x, int p_y, int radius, double vel_x, double vel_y);
 
 	void update(double& dt_time);
-	void updateMoveVector();
+	//void updateMoveVector();
 	void setVelocity(sf::Vector2f vel);
-	sf::CircleShape& getShape();
 	void setPos(sf::Vector2f pos);
+	void setColor(sf::Color col);
+
+	sf::CircleShape& getShape();
 	sf::Vector2f getPos();
 	sf::Vector2f getVelocity();
 	float getRadius();
