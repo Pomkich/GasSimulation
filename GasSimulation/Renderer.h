@@ -9,7 +9,7 @@
 class Renderer {
 private:
 	sf::RenderWindow window;
-	std::vector<Molecule> gas;
+	std::vector<Molecule> gas;	// first moved by mouse
 	std::vector<sf::RectangleShape> walls;
 	sf::Clock clock;
 	

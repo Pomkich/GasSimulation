@@ -112,6 +112,15 @@ void Renderer::run() {
         {
             if (event.type == sf::Event::Closed)
                 window.close();
+            else if (event.type == sf::Event::MouseButtonPressed && gas.size() > 0) {
+                sf::Vector2f moving_vector = sf::Vector2f(
+                    sf::Mouse::getPosition(window).x - gas[0].getPos().x,
+                    sf::Mouse::getPosition(window).y - gas[0].getPos().y
+                );
+
+                gas[0].setVelocity(moving_vector);
+                gas[0].updateMoveVector();
+            }
         }
         // updating simulation
         update(clock.getElapsedTime().asSeconds());
