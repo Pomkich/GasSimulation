@@ -121,6 +121,13 @@ void Renderer::run() {
                 gas[0].setVelocity(moving_vector);
                 gas[0].updateMoveVector();
             }
+            else if (event.key.code == sf::Keyboard::A && event.type == sf::Event::KeyPressed) {
+                Molecule mol(rand() % 700 + 60, rand() % 500 + 60, rand() % 10 + 5, rand() % max_velocity, rand() % max_velocity);
+                gas.push_back(mol);
+            }
+            else if (event.key.code == sf::Keyboard::D && event.type == sf::Event::KeyPressed && gas.size() > 0) {
+                gas.pop_back();
+            }
         }
         // updating simulation
         update(clock.getElapsedTime().asSeconds());

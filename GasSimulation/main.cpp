@@ -27,6 +27,8 @@ int main()
         prev_x = wall_size + 10;
         prev_y = prev_y + 50;
     }
+    std::cout << "A button - add molecule" << std::endl;
+    std::cout << "D button - delete last added molecule" << std::endl;
 
     rend.run();
 
