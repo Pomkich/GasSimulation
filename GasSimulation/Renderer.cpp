@@ -33,12 +33,14 @@ void Renderer::checkCollisions() {
             molecule.setVelocity(   // just reflect from wall in opposite direction
                 sf::Vector2f(-molecule.getVelocity().x, molecule.getVelocity().y)
             );
+            molecule.updateMoveVector();
         }
         else if (molecule.getPos().y < walls[(int)side::up].getSize().y || 
             ((molecule.getPos().y + molecule.getRadius() * 2) > walls[(int)side::bottom].getPosition().y)) {
             molecule.setVelocity(
                 sf::Vector2f(molecule.getVelocity().x, -molecule.getVelocity().y)
             );
+            molecule.updateMoveVector();
         }
     }
 
@@ -89,6 +91,9 @@ void Renderer::resolveCollision(Molecule& mol1, Molecule& mol2) {
     mol1.setVelocity(new_vel_m1);
     mol2.setVelocity(new_vel_m2);
 
+    mol1.updateMoveVector();
+    mol2.updateMoveVector();
+
     // setup new color
     sf::Color col(rand() % 255, rand() % 255, rand() % 255, 255);
     mol1.setColor(col);
@@ -117,6 +122,7 @@ void Renderer::run() {
         window.clear();
         for (auto& molecule : gas) {
             window.draw(molecule.getShape());
+            window.draw(molecule.getMoveVector());
         }
         for (auto& wall : walls) {
             window.draw(wall);
